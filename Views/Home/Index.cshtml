@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BowlersListViewModel
+
+<div class="">
+    <h3>
+        Bowlers
+        @if (Model.CurrentCategory != null) 
+        {
+            <span>for the @Model.CurrentCategory</span>
+        }:
+    </h3>
+    @foreach (Bowlers bowler in Model.BowlerList)
+    {
+        <div class="card border border-primary">
+            <div class="card-body">
+                <h5 class="card-title">@bowler.BowlerFirstName @bowler.BowlerMiddleInit @bowler.BowlerLastName</h5>
+                <span><b>Address:</b></span><br />
+                <span>@bowler.BowlerAddress</span><br />
+                <span>@bowler.BowlerCity, @bowler.BowlerState @bowler.BowlerZip</span><br />
+                <span><b>Phone: </b>@bowler.BowlerPhoneNumber</span>
+            </div>
+        </div>
+    }
+    <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
+         page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory" class="btn-group pull-right m-1"></div>
+</div>
